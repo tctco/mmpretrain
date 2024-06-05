@@ -15,7 +15,7 @@ from .latent_heads import LatentCrossCorrelationHead, LatentPredictHead
 from .levit_head import LeViTClsHead
 from .linear_head import LinearClsHead
 from .mae_head import MAEPretrainHead
-from .margin_head import ArcFaceClsHead
+from .margin_head import ArcFaceClsHead, AdaFaceClsHead
 from .mim_head import MIMHead
 from .mixmim_head import MixMIMPretrainHead
 from .mocov3_head import MoCoV3Head
@@ -31,6 +31,7 @@ from .swav_head import SwAVHead
 from .vig_head import VigClsHead
 from .vision_transformer_head import VisionTransformerClsHead
 from .vqa_head import VQAGenerationHead
+from .osnet_head import OSNetHead
 
 __all__ = [
     'ClsHead',
@@ -66,4 +67,6 @@ __all__ = [
     'GroundingHead',
     'iTPNClipHead',
     'SparKPretrainHead',
+    "OSNetHead",
+    "AdaFaceClsHead"
 ]
