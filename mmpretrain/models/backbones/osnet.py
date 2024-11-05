@@ -74,7 +74,7 @@ class OSNet(BaseBackbone):
           for Person Re-Identification. TPAMI, 2021.
     """
 
-    def __init__(self, key, IN=False, triplet=False):
+    def __init__(self, key, IN=False, triplet=False, frozen_stages=-1):
         super(OSNet, self).__init__()
         blocks = [OSBlock, OSBlock, OSBlock]
         layers = [2, 2, 2]
@@ -115,6 +115,14 @@ class OSNet(BaseBackbone):
 
         self._init_params()
         self.triplet = triplet
+        self.frozen_stages = frozen_stages
+
+    def _freeze_stages(self):
+        for i in range(1, self.frozen_stages + 1):
+            m = getattr(self, f"conv{i}")
+            m.eval()
+            for param in m.parameters():
+                param.requires_grad = False
 
     def _make_layer(
         self, block, layer, in_channels, out_channels, reduce_spatial_size, IN=False
